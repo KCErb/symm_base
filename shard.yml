@@ -1,0 +1,9 @@
+name: symm_base
+version: 0.1.0
+
+authors:
+  - KC Erb <iamkcerb@gmail.com>
+
+crystal: 0.26.1
+
+license: MIT
