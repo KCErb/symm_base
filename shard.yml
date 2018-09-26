@@ -2,7 +2,10 @@ name: symm_base
 version: 0.1.0
 
 authors:
-  - KC Erb <iamkcerb@gmail.com>
+  - KC Erb <kcerb@fzu.cz>
+
+description: |
+  Provides base modules and classes for working with crystal symmetry.
 
 crystal: 0.26.1
 

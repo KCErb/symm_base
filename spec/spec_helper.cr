@@ -6,6 +6,7 @@ module SymmBase
     include Isometry
 
     def initialize(@increment = 0)
+      @kind = :test_isometry
     end
 
     def transform(point : Point)
@@ -21,6 +22,7 @@ module SymmBase
     include CompoundIsometry
 
     def initialize
+      @kind = :test_compound_isometry
       @isometries = Set(Isometry).new
       @isometries << TestIsometry.new(2)
       @isometries << TestIsometry.new(3)

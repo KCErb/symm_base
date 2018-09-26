@@ -1,7 +1,8 @@
 require "./isometry"
 
 module SymmBase
-  # A symmetry group is a `Set` of `Isometry`s.
+  # Provides an abstract parent for any class that needs to work with
+  # a `Set` of `Isometry`s.
   abstract class SymmGroup
     getter name : String
     getter isometries = Set(Isometry).new
