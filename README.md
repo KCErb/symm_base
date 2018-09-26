@@ -36,7 +36,7 @@ Contributions are welcome! To get things started you can [open an issue](https:/
 
 In general, if you want, you can just pull this code down, start hacking on it, and then push it back here as a "Pull Request", then we can discuss your proposed changes.
 
-1. Fork it (<https://github.com/your-github-user/symm_base/fork>)
+1. Fork it (<https://gitlab.com/crystal-symmetry/symm_base/forks/new>)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
