@@ -24,7 +24,7 @@ See other `crystal-symmetry` shards for examples such as
   * [Symm32](https://gitlab.com/crystal-symmetry/symm32)
   * [SymmSpecies](https://gitlab.com/crystal-symmetry/symm_species) (which builds on `Symm32`)
 
-Or you can see the above shards in use in some crystal "app"s like
+Or you can see the above shards in use in some crystal applications like
   * [Limit Groups](https://gitlab.com/crystal-symmetry/limit_groups)
   * [Hasse Diagrams](https://gitlab.com/crystal-symmetry/hasse)
 
