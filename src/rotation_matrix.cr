@@ -3,7 +3,9 @@ module SymmBase
   class RotationMatrix
     # pre-computed matrix elements
     # :nodoc:
-    alias Row = {Float64, Float64, Float64}
+    alias Num = Int32 | Float64
+    # :nodoc:
+    alias Row = {Num, Num, Num}
     getter matrix : {Row, Row, Row}
 
     # Creates a rotation
@@ -14,7 +16,8 @@ module SymmBase
     def initialize(@matrix); end
 
     # matrix multiplication to create a new rotation from two old ones
-    def *(other : self)
+    def *(other_rotation : self)
+      other = other_rotation.matrix
       new_matrix = {
         {
           @matrix[0][0]*other[0][0] + @matrix[0][1]*other[1][0] + @matrix[0][2]*other[2][0],
