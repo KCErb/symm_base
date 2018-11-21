@@ -10,9 +10,9 @@ module SymmBase
     end
 
     it "can be multiplied by another rotation matrix" do
-      a = RotationMatrix.new({ {1,2,3}, {4,5,6}, {7,8,9} })
-      b = RotationMatrix.new({ {1,4,7}, {2,5,8}, {3,6,9} })
-      c = RotationMatrix.new({ {14,32,50}, {32, 77,122}, {50,122,194} })
+      a = RotationMatrix.new({ {1, 2, 3}, {4, 5, 6}, {7, 8, 9} })
+      b = RotationMatrix.new({ {1, 4, 7}, {2, 5, 8}, {3, 6, 9} })
+      c = RotationMatrix.new({ {14, 32, 50}, {32, 77, 122}, {50, 122, 194} })
       (a * b).matrix.should eq c.matrix
     end
   end
