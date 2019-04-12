@@ -4,6 +4,7 @@ require "../src/symm_base"
 module SymmBase
   class TestIsometry
     include Isometry
+    getter increment
 
     def initialize(@increment = 0)
       @kind = :test_isometry
@@ -20,6 +21,7 @@ module SymmBase
 
   class TestCompoundIsometry
     include CompoundIsometry
+    getter increment = 5
 
     def initialize
       @kind = :test_compound_isometry
@@ -52,11 +54,16 @@ module SymmBase
 
   class TestSymmGroup < SymmGroup
     def inverse(isometry)
-      isometry
+      TestIsometry.new(-isometry.increment)
     end
 
-    def product(isometry1, isometry2)
-      isometry1
+    # non abelian
+    def product(iso1, iso2)
+      if iso2.increment >= iso1.increment
+        TestIsometry.new(iso2.increment - iso1.increment)
+      else
+        TestIsometry.new(iso2.increment + iso1.increment)
+      end
     end
   end
 end
