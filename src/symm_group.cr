@@ -16,5 +16,8 @@ module SymmBase
     def order
       isometries.size
     end
+
+    abstract def inverse(isometry : Isometry) : Isometry
+    abstract def product(isometry1 : Isometry, isometry2 : Isometry) : Isometry
   end
 end

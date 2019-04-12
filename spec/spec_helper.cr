@@ -51,5 +51,12 @@ module SymmBase
   end
 
   class TestSymmGroup < SymmGroup
+    def inverse(isometry)
+      isometry
+    end
+
+    def product(isometry1, isometry2)
+      isometry1
+    end
   end
 end
