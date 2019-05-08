@@ -12,5 +12,9 @@ module SymmBase
     def transform(point : Point)
       isometries.reduce(point) { |acc, isometry| isometry.transform(acc) }
     end
+
+    def transform(vectorlike : Vectorlike)
+      isometries.reduce(vectorlike) { |acc, isometry| isometry.transform(acc) }
+    end
   end
 end

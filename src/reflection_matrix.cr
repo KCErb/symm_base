@@ -21,14 +21,23 @@ module SymmBase
       @a_23 = -2*y*z
     end
 
-    # Transforms `vec` by reflecting it, returns new `Vector3`
+    # return Vector3 if Vector3 passed in
     def *(vec : Vector3)
-      tuple = {
-        vec.x * @a_11 + vec.y * @a_12 + vec.z * @a_13,
-        vec.x * @a_12 + vec.y * @a_22 + vec.z * @a_23,
-        vec.x * @a_13 + vec.y * @a_23 + vec.z * @a_33,
+      Vector3.new(*tuple(vec.values))
+    end
+
+    # pass back tuple if something else is passed in, that something else
+    # just needs to understand * and + and have three elements accessible by []
+    def *(vectorlike)
+      tuple(vectorlike)
+    end
+
+    private def tuple(vec)
+      {
+        vec[0] * @a_11 + vec[1] * @a_12 + vec[2] * @a_13,
+        vec[0] * @a_12 + vec[1] * @a_22 + vec[2] * @a_23,
+        vec[0] * @a_13 + vec[1] * @a_23 + vec[2] * @a_33,
       }
-      Vector3.new(*tuple)
     end
   end
 end

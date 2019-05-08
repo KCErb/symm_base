@@ -38,15 +38,24 @@ module SymmBase
       self.class.new(new_matrix)
     end
 
-    # Transforms `vec` by rotating it, returns new `Vector3`
+    # return Vector3 if one is passed in
     def *(vec : Vector3)
-      x, y, z = vec.values
+      Vector3.new(*tuple(vec.values))
+    end
+
+    # pass back tuple if something else is passed in, that something else
+    # just needs to understand * and + and have three elements accessible by []
+    def *(vectorlike)
+      tuple(vectorlike)
+    end
+
+    private def tuple(vec)
+      x, y, z = {vec[0], vec[1], vec[2]}
       tuple = {
         x * @matrix[0][0] + y * @matrix[0][1] + z * @matrix[0][2],
         x * @matrix[1][0] + y * @matrix[1][1] + z * @matrix[1][2],
         x * @matrix[2][0] + y * @matrix[2][1] + z * @matrix[2][2],
       }
-      Vector3.new(*tuple)
     end
 
     private def compute_matrix(vec, angle)

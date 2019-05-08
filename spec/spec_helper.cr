@@ -10,6 +10,10 @@ module SymmBase
       @kind = :test_isometry
     end
 
+    def transform(vectorlike : Vectorlike)
+      {vectorlike[0], vectorlike[1], vectorlike[2] + @increment}
+    end
+
     def transform(point : Point)
       new_coord = point.coordinates
       new_coord.z += @increment

@@ -33,5 +33,30 @@ module SymmBase
     def transform(points : Set(Point))
       points.map { |point| transform(point) }.to_set
     end
+
+    # must also support transforming anything with 3 vals in an array that respond
+    # to plus, times, minus etc... but I don't know how to enforce that cleanly here
+    abstract def transform(vectorlike : Vectorlike)
   end
+
+  # what does "vectorlike" mean you ask?
+  alias Vectorlike = NumericArray | Array(Float64|Int32) | Tuple(Float64, Float64, Float64) | Tuple(Int32, Int32, Int32)
+
+  abstract struct NumericArray
+    abstract def [](index : Int32) : Numberlike
+  end
+
+  abstract struct Numberlike
+    alias Num = (Int32 | Float64)
+    abstract def -
+    abstract def +(other : self)
+    abstract def +(other : Num)
+    abstract def -(other : self)
+    abstract def -(other : Num)
+    abstract def *(other : self)
+    abstract def *(other : Num)
+    abstract def /(other : self)
+    abstract def /(other : Num)
+  end
+
 end
