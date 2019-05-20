@@ -12,12 +12,12 @@ module SymmBase
     end
 
     it "transforms something that is vectorlike" do
-      res = TestIsometry.new(3).transform([0, 0, 1])
+      res = TestIsometry.new(3).transform({0, 0, 1})
       res.should eq({0, 0, 4})
     end
 
     it "transforms something that is vectorlike with an invert property" do
-      res = TestIsometry.new(3).transform([0, 0, 1], [:test, :test2])
+      res = TestIsometry.new(3).transform({0, 0, 1}, [:test, :test2])
       res.should eq({0, 0, -2})
     end
   end

@@ -36,12 +36,12 @@ module SymmBase
 
     # must also support transforming anything with 3 vals in an array that respond
     # to plus, times, minus etc... but I don't know how to enforce that cleanly here
-    abstract def transform(vectorlike : Vectorlike)
+    abstract def transform(vectorlike : Vectorlike) : Vectorlike
 
     # allow to pass symbols corresponding to `point` having an `invert(symbol)` for vectorlike input
     # in that case it's the points job to allow multiple symbols
     # so in the vectorlike case, we have to pass along potentially many symbols
-    def transform(vectorlike : Vectorlike, invert = [] of Symbol)
+    def transform(vectorlike : Vectorlike, invert = [] of Symbol) : Vectorlike
       transform(vectorlike)
     end
   end
