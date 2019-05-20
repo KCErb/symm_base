@@ -12,6 +12,14 @@ module SymmBase
       res.should eq ans
     end
 
+    it "transforms a point based on children's combined rules, passes sym onto children" do
+      comp = TestCompoundIsometry.new
+      zero = {0, 0, 0}
+      res = comp.transform(zero, [:test, :fake])
+      ans_vec = {0, 0, -5}
+      res.should eq ans_vec
+    end
+
     it "it's an isometry" do
       CompoundIsometry.is_a? Isometry
     end

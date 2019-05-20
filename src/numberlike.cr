@@ -31,10 +31,6 @@ abstract struct Numberlike
     other.is_a?(Num) ? self + other : self + other
   end
 
-  def -(other : self | Num)
-    other.is_a?(Num) ? self - other : self - other
-  end
-
   def *(other : self | Num)
     other.is_a?(Num) ? self * other : self * other
   end
@@ -47,7 +43,7 @@ abstract struct Number
     n * self
   end
 
-  def +(n : Nunberlike)
+  def +(n : Numberlike)
     n + self
   end
 

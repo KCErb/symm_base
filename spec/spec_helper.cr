@@ -10,8 +10,12 @@ module SymmBase
       @kind = :test_isometry
     end
 
-    def transform(vectorlike : Vectorlike)
-      {vectorlike[0], vectorlike[1], vectorlike[2] + @increment}
+    def transform(vectorlike : Vectorlike, sym_arr = [] of Symbol)
+      if sym_arr.includes? :test
+        {vectorlike[0], vectorlike[1], vectorlike[2] - @increment}
+      else
+        {vectorlike[0], vectorlike[1], vectorlike[2] + @increment}
+      end
     end
 
     def transform(point : Point)
@@ -67,6 +71,35 @@ module SymmBase
         TestIsometry.new(iso2.increment - iso1.increment)
       else
         TestIsometry.new(iso2.increment + iso1.increment)
+      end
+    end
+  end
+
+  # just a wrapper to num for the test
+  struct TestNumberlike < Numberlike
+    getter val : Int32 | Float64
+
+    def initialize(@val); end
+
+    def -
+      self.class.new(-val)
+    end
+
+    # demonstrate that we support both separated defs (+)
+    def +(other : self)
+      self.class.new(val + other.val)
+    end
+
+    def +(other : Num)
+      self.class.new(val + other)
+    end
+
+    #  and combined defs (*)
+    def *(other : self | Num)
+      if other.is_a?(self)
+        self.class.new(val * other.val)
+      else
+        self.class.new(val * other)
       end
     end
   end
