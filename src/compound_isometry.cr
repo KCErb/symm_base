@@ -13,8 +13,8 @@ module SymmBase
       isometries.reduce(point) { |acc, isometry| isometry.transform(acc) }
     end
 
-    def transform(vectorlike : Vectorlike)
-      isometries.reduce(vectorlike) { |acc, isometry| isometry.transform(acc) }
+    def transform(vectorlike : Vectorlike, invert = [] of Symbol)
+      isometries.reduce(vectorlike) { |acc, isometry| isometry.transform(acc, invert) }
     end
   end
 end

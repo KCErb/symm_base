@@ -37,26 +37,12 @@ module SymmBase
     # must also support transforming anything with 3 vals in an array that respond
     # to plus, times, minus etc... but I don't know how to enforce that cleanly here
     abstract def transform(vectorlike : Vectorlike)
+
+    # allow to pass symbols corresponding to `point` having an `invert(symbol)` for vectorlike input
+    # in that case it's the points job to allow multiple symbols
+    # so in the vectorlike case, we have to pass along potentially many symbols
+    def transform(vectorlike : Vectorlike, invert = [] of Symbol)
+      transform(vectorlike)
+    end
   end
-
-  # what does "vectorlike" mean you ask?
-  alias Vectorlike = NumericArray | Array(Float64|Int32) | Tuple(Float64, Float64, Float64) | Tuple(Int32, Int32, Int32)
-
-  abstract struct NumericArray
-    abstract def [](index : Int32) : Numberlike
-  end
-
-  abstract struct Numberlike
-    alias Num = (Int32 | Float64)
-    abstract def -
-    abstract def +(other : self)
-    abstract def +(other : Num)
-    abstract def -(other : self)
-    abstract def -(other : Num)
-    abstract def *(other : self)
-    abstract def *(other : Num)
-    abstract def /(other : self)
-    abstract def /(other : Num)
-  end
-
 end
