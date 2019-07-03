@@ -30,6 +30,7 @@ module SymmBase
     def +(other : self | Num)
       other.is_a?(Num) ? self + other : self + other
     end
+
     # So that child structs can either define `*(self)` and `*(Num)` separately or
     # together, we give the individuals as abstract methods and the combined here
     # as concrete methods.
