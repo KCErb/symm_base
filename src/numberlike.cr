@@ -38,7 +38,7 @@ module SymmBase
   end
 end
 
-# make addition and multiplication symmetric, i.e. we can do both
+# make operations symmetric, i.e. we can do both
 # numberlike * number and number * numberlike
 struct Number
   def *(n : SymmBase::Numberlike)

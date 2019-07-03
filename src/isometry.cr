@@ -39,7 +39,7 @@ module SymmBase
     abstract def transform(vectorlike : Vectorlike) : Vectorlike
 
     # allow to pass symbols corresponding to `point` having an `invert(symbol)` for vectorlike input
-    # in that case it's the points job to allow multiple symbols
+    # in that case it's the point's job to allow multiple symbols
     # so in the vectorlike case, we have to pass along potentially many symbols
     def transform(vectorlike : Vectorlike, invert = [] of Symbol) : Vectorlike
       transform(vectorlike)
