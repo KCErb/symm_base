@@ -2,7 +2,7 @@
 
 `SymmBase` is a [Crystal](https://crystal-lang.org) shard which provides some modules and abstract objects for use as a base for other shards. Specifically, it's the base module for a family of shards related to exploring Crystallographic Symmetry: [https://gitlab.com/crystal-symmetry](https://gitlab.com/crystal-symmetry).
 
-If you're brand new to this set of shards, I'd recommend starting with a different library, one that uses this as a base. For example, these base modules / classes were originally abstracted from [Symm32](https://gitlab.com/crystal-symmetry/symm32) so that shard should serve as an excellent starting place.
+If you're brand new to this set of shards, I'd recommend starting with a different library, one that uses this as a base. For example, these base modules / classes were originally abstracted from [Symm32](https://gitlab.com/crystal-symmetry/symm32) so that shard might serve as a better starting place.
 
 ## Installation
 
@@ -21,12 +21,10 @@ require "symm_base"
 ```
 
 See other `crystal-symmetry` shards for examples such as
-  * [Symm32](https://gitlab.com/crystal-symmetry/symm32)
-  * [SymmSpecies](https://gitlab.com/crystal-symmetry/symm_species) (which builds on `Symm32`)
 
-Or you can see the above shards in use in some crystal applications like
-  * [Limit Groups](https://gitlab.com/crystal-symmetry/limit_groups)
-  * [Hasse Diagrams](https://gitlab.com/crystal-symmetry/hasse)
+* [Symm32](https://gitlab.com/crystal-symmetry/symm32)
+* [SymmMagnetic](https://gitlab.com/crystal-symmetry/symm_magnetic)
+* [SymmSpecies](https://gitlab.com/crystal-symmetry/symm_species)
 
 all of which rely in part on logic provided by `SymmBase`.
 
@@ -46,4 +44,4 @@ But I recommend you start off by opening an issue so that you don't waste time o
 
 ## Contributors
 
-- [KCErb](https://gitlab.com/kcerb) KC Erb - creator, maintainer
+* [KCErb](https://gitlab.com/kcerb) KC Erb - creator, maintainer
