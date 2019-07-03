@@ -1,6 +1,13 @@
 module SymmBase
-  # Reflect a point through a plane which is normal to `axis` and contains the origin.
-
+  # Matrix for reflecting a point through a plane which contains the origin and is normal to
+  # the `Vector3` provided in the `#initialize` method. The operation is defined
+  # in the `#*` method so that it can be used via multiplication.
+  #
+  # For example
+  # ```
+  # matrix = ReflectionMatrix.new(Vector3.new(1, 1, 1))
+  # vec = Vector3.new(1, 1, 1)
+  # matrix * vec # => [-1, -1, -1]
   class ReflectionMatrix
     # pre-computed matrix elements
     @a_11 : Float64
@@ -10,7 +17,8 @@ module SymmBase
     @a_13 : Float64
     @a_23 : Float64
 
-    # creates a reflection
+    # Creates a `ReflectionMatrix` which reflects either a `Vector3` or some other
+    # `Vectorlike` through a plane which contains the origin and is normal to `vec`.
     def initialize(vec : Vector3)
       x, y, z = vec.normalized.values
       @a_11 = 1 - 2*x**2
@@ -21,13 +29,13 @@ module SymmBase
       @a_23 = -2*y*z
     end
 
-    # return Vector3 if Vector3 passed in
+    # Reflect `Vector3` through the plane defined by `#initialize` and return a new `Vector3`.
     def *(vec : Vector3)
       Vector3.new(*tuple(vec.values))
     end
 
-    # pass back tuple if something else is passed in, that something else
-    # just needs to understand * and + and have three elements accessible by []
+    # Reflect a `Vectorlike` through the plane defined in the `#initialize` method. Return
+    # a 3-tuple with the result.
     def *(vectorlike)
       tuple(vectorlike)
     end

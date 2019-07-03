@@ -20,12 +20,17 @@ module SymmBase
   # end
   # ```
   #
-  # At the moment, this base module just requires that you give a transform
-  # method and initialize the `@kind` variable. There is no actual enforcement
+  # At the moment, this base module requires that you give two transform
+  # methods and initialize the `@kind` variable. There is no actual enforcement
   # that the transform method preserves any metrics.
+  #
+  # The transform methods must define operation on a `Point` and a `Vectorlike` object. The
+  # `@kind` is just a symbol to aid in identification and uniqueness.
   module Isometry
     getter kind : Symbol
 
+    # Transform one instance of a `Point` into a new `Point` based on logic
+    # implemented by including class.
     abstract def transform(point : Point) : Point
 
     # Transforms a `Set` of points according to the class's
@@ -34,13 +39,13 @@ module SymmBase
       points.map { |point| transform(point) }.to_set
     end
 
-    # must also support transforming anything with 3 vals in an array that respond
-    # to plus, times, minus etc... but I don't know how to enforce that cleanly here
+    # Transform a `Vectorlike` into a new `Vectorlike` object based
+    # on same logic as `Point`.
     abstract def transform(vectorlike : Vectorlike) : Vectorlike
 
-    # allow to pass symbols corresponding to `point` having an `invert(symbol)` for vectorlike input
-    # in that case it's the point's job to allow multiple symbols
-    # so in the vectorlike case, we have to pass along potentially many symbols
+    # Optionally, pass an array of symbols to the transform method which
+    # handle how a transform is changed based on the properties of the vectorlike
+    # object.
     def transform(vectorlike : Vectorlike, invert = [] of Symbol) : Vectorlike
       transform(vectorlike)
     end

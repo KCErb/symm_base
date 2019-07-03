@@ -1,3 +1,9 @@
+module SymmBase
+  # Shorthand for Float64 and Int32 used throughout this library.
+  alias Num = Float64 | Int32
+end
+
+# now pull in rest of library
 require "./*"
 
 # Provides namespace for a "Base shard" for *other* shards related to

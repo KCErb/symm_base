@@ -1,21 +1,25 @@
 module SymmBase
-  # Rotate a `Vector3` about an axis by an angle
+  # Rotate a `Vector3` about an axis by an angle. The rotation matrix here
+  # is a conventional right-handed active transformation.
+  # https://en.wikipedia.org/wiki/Active_and_passive_transformation.
   class RotationMatrix
-    # pre-computed matrix elements
-    # :nodoc:
-    alias Num = Int32 | Float64
-    # :nodoc:
+    # A matrix is just a 3-tuple of 3-tuples of `SymmBase::Num`s here.
+    # So `Symm  Row` is just a placeholder for static typing.
     alias Row = {Num, Num, Num}
+    # 3-Tuple of `Row`s which each hold three numbers.
     getter matrix : {Row, Row, Row}
 
-    # Creates a rotation
-    def initialize(axis, angle)
+    # Creates a right-handed rotation about the axis defined by the given `Vector3` by
+    # angle given by `angle`.
+    def initialize(axis : Vector3, angle)
       @matrix = compute_matrix(axis, angle)
     end
 
+    # In truth, this just sets the matrix to anything, so it doesn't have to be a
+    # true rotation, but the purpose is so that rotation matrices can be applied.
     def initialize(@matrix); end
 
-    # matrix multiplication to create a new rotation from two old ones
+    # Matrix multiplication to create a new rotation from two old ones.
     def *(other_rotation : self)
       other = other_rotation.matrix
       new_matrix = {
@@ -38,13 +42,12 @@ module SymmBase
       self.class.new(new_matrix)
     end
 
-    # return Vector3 if one is passed in
+    # Rotate `Vector3` according to constructor. Return a `Vector3` as well.
     def *(vec : Vector3)
       Vector3.new(*tuple(vec.values))
     end
 
-    # pass back tuple if something else is passed in, that something else
-    # just needs to understand * and + and have three elements accessible by []
+    # Rotate a `Vectorlike` same as a `Vector3`.
     def *(vectorlike)
       tuple(vectorlike)
     end

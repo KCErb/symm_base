@@ -1,8 +1,8 @@
 require "./vector3"
 
 module SymmBase
-  # Provides an abstract parent struct for "points" which are the base
-  # object that isometries operate on (see `Isometry`).
+  # Provides an abstract parent struct for "points" which are one of the base
+  # objects that isometries operate on (see `Isometry`).
   #
   # Essentially, this struct just wraps a `Vector3` so that the point represented
   # by that vector can have some kind of internal state. You'll notice that

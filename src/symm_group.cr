@@ -17,10 +17,15 @@ module SymmBase
       isometries.size
     end
 
+    # Implementing class must define the inverse isometry of each isometry
+    # in the group.
     abstract def inverse(isometry : Isometry) : Isometry
+
+    # Implementing class must define the group operator which combines two isometries
+    # and produces a third.
     abstract def product(isometry1 : Isometry, isometry2 : Isometry) : Isometry
 
-    # if given an array, we apply product in left-to-right order
+    # If given an array of `Isometry`, we apply the  `#product` in left-to-right order.
     def product(arr : Array(Isometry))
       arr.reverse.reduce do |acc, iso|
         product(iso, acc)

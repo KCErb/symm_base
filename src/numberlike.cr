@@ -1,45 +1,48 @@
 module SymmBase
   # See also `Vectorlike`. A "numberlike" object is one that
   # can perform arithmetic with itself and numbers, except for division,
-  # division by self may not be so easily defined.
+  # since division by `self` may not be so easily defined.
   #
   # Thanks to the symmetries in arithmetic, this just boils down to defining
-  # 5 operations, negation, addition and multiplication, 3 if self and Num can be treated
-  # the same.
+  # 3 operations: negation, addition and multiplication.
   abstract struct Numberlike
-    alias Num = (Int32 | Float64)
-
     abstract def -
     abstract def +(other : self)
     abstract def +(other : Num)
     abstract def *(other : self)
     abstract def *(other : Num)
 
-    # We can define minus in terms of plus and negative so we do
+    # Automatically define `- other` based on addition (`#+`) and negation (`#-`)
     def -(other : self | Num)
       self + (-other)
     end
 
-    # We can define scalar division since 1/number is well-defined
+    # Automatically define `/ other` based on multiplication (`#*`) and the fact that `1/Num` is well-defined.
     def /(other : Num)
       self * (1/other)
     end
 
-    # support giving a combined definition by creating a default combined
-    # implementation. A little ugly but the best I seem to be able to do atm
+    # So that child structs can either define `+(self)` and `+(Num)` separately or
+    # together, we give the individuals as abstract methods and the combined here
+    # as concrete methods.
+    #
     # https://stackoverflow.com/questions/56074831/crystal-how-to-implement-multiple-abstract-methods-with-one-method-in-child/56077092
     def +(other : self | Num)
       other.is_a?(Num) ? self + other : self + other
     end
-
+    # So that child structs can either define `*(self)` and `*(Num)` separately or
+    # together, we give the individuals as abstract methods and the combined here
+    # as concrete methods.
+    #
+    # https://stackoverflow.com/questions/56074831/crystal-how-to-implement-multiple-abstract-methods-with-one-method-in-child/56077092
     def *(other : self | Num)
       other.is_a?(Num) ? self * other : self * other
     end
   end
 end
 
-# make operations symmetric, i.e. we can do both
-# numberlike * number and number * numberlike
+# Add the `SymmBase::Numberlike` operations to the `Number` class
+# so that they are symmetric.
 struct Number
   def *(n : SymmBase::Numberlike)
     n * self
