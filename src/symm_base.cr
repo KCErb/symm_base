@@ -10,5 +10,5 @@ require "./*"
 # Crystallographic Symmetry. See the README or see the GitLab group:
 # https://gitlab.com/crystal-symmetry
 module SymmBase
-  VERSION = "0.2.0"
+  VERSION = "1.0.0"
 end
