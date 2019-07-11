@@ -36,19 +36,18 @@ module SymmBase
       (vzero - vec2).values.should eq({-3.0, -4.0, -0.0})
       (vzero - vec2).should eq(-vec2)
 
-      vec3 = Vector3.new(1.0, 2.0, 3.0)
-      vec4 = Vector3.new(0.0, 3.0, 4.0)
-      vec5 = Vector3.new(3.0, 0.0, 4.0)
+      vec3 = Vector3.new(0.0, 3.0, 4.0)
+      vec4 = Vector3.new(3.0, 0.0, 4.0)
       m = 5.0
       vec2.magnitude.should eq(m)
+      vec3.magnitude.should eq(m)
       vec4.magnitude.should eq(m)
-      vec5.magnitude.should eq(m)
-      (vec5*2.0).magnitude.should eq(10)
+      (vec4*2.0).magnitude.should eq(10)
 
-      vec5.x = 42.0
-      vec5.should_not eq(vzero)
-      vec5.should eq(Vector3.new(42.0, 0.0, 4.0))
-      vec5.normalized.magnitude.should eq(1.0)
+      vec4.x = 42.0
+      vec4.should_not eq(vzero)
+      vec4.should eq(Vector3.new(42.0, 0.0, 4.0))
+      vec4.normalized.magnitude.should eq(1.0)
     end
   end
 end

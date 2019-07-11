@@ -54,7 +54,7 @@ module SymmBase
 
     private def tuple(vec)
       x, y, z = {vec[0], vec[1], vec[2]}
-      tuple = {
+      {
         x * @matrix[0][0] + y * @matrix[0][1] + z * @matrix[0][2],
         x * @matrix[1][0] + y * @matrix[1][1] + z * @matrix[1][2],
         x * @matrix[2][0] + y * @matrix[2][1] + z * @matrix[2][2],
